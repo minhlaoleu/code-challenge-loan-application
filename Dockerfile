@@ -1,6 +1,8 @@
 FROM php:8.2-fpm-alpine
 
-WORKDIR /var/www/html/
+# Copy source code and choose working directory
+COPY . /var/www/html
+WORKDIR /var/www/html
 
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 
