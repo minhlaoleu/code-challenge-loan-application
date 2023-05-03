@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enum\StatusEnum;
 
 return new class extends Migration
 {
@@ -15,9 +16,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->smallInteger('term',false,true);
             $table->decimal('amount', 10, 2, true);
-            $table->tinyInteger('status',false,true);
+            $table->decimal('balanced', 10, 2, true)->default(0);
             $table->foreignUuid('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignUuid('status_id')->references('id')->on('status')->cascadeOnDelete();
+            $table->enum('status',[StatusEnum::PENDING->value, StatusEnum::APPROVED->value, StatusEnum::PAID->value]);
             $table->timestamps();
         });
     }

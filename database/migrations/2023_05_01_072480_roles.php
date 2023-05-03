@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('status', static function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('status_name', 50);
+        Schema::create('roles', static function (Blueprint $table) {
+            $table->tinyIncrements('id')->unsigned();
+            $table->string('role_name',50)->index('idx_role_name');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('status');
+        Schema::dropIfExists('roles');
     }
 };

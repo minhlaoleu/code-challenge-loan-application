@@ -3,12 +3,13 @@
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true"
+         testdox="true"
 >
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/units</directory>
         </testsuite>
-        <testsuite name="Features Test Suite">
+        <testsuite name="Feature">
             <directory suffix="Test.php">./tests/features</directory>
         </testsuite>
     </testsuites>
@@ -16,5 +17,7 @@
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
+        <server name="DB_CONNECTION" value="sqlite"/>
+        <server name="DB_DATABASE" value=":memory:"/>
     </php>
 </phpunit>
